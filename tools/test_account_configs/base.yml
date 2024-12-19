@@ -4,12 +4,12 @@ allowlist:
   - "account parameter"
   - "catalog integration"
   - "database role"
+  - "database role grant"
   - "database"
   - "external volume"
   - "future grant"
   - "grant"
   - "iceberg table"
-  - "network policy"
   - "network rule"
   - "resource monitor"
   - "role grant"
@@ -110,10 +110,10 @@ role_grants:
     roles:
       - SYSADMIN
 
-# database_role_grants:
-#   - role: static_database_role
-#     roles:
-#       - SYSADMIN
+database_role_grants:
+  - database_role: static_database.static_database_role
+    roles:
+      - SYSADMIN
 
 network_rules:
   - name: static_network_rule
@@ -293,8 +293,14 @@ views:
 
 warehouses:
   - name: static_warehouse
+    warehouse_size: XSMALL
+    auto_suspend: 30
+    auto_resume: true
+    initially_suspended: true
   - name: CI
     warehouse_size: XSMALL
+    auto_suspend: 30
+    initially_suspended: true
 
 
   
@@ -330,3 +336,4 @@ secrets:
 #   - name: THREAT_INTELLIGENCE
 #     enabled: true
 #     schedule: "0 0 * * * UTC"
+
